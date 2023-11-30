@@ -1,31 +1,31 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+	"id": "outside",
 	"version": "${version}",
-	"name": "Example mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Outside",
+	"description": "mod!",
 	"authors": [
-		"Me!"
+		"0TrashPanda"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "",
+		"sources": "https://github.com/0TrashPanda/outside"
 	},
-	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"license": "",
+	"icon": "assets/outside/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
+			"outside.Outside"
 		],
 		"client": [
-			"com.example.ExampleModClient"
+			"outside.OutsideClient"
 		]
 	},
 	"mixins": [
-		"modid.mixins.json",
+		"outside.mixins.json",
 		{
-			"config": "modid.client.mixins.json",
+			"config": "outside.client.mixins.json",
 			"environment": "client"
 		}
 	],
