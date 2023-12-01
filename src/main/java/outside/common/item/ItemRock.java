@@ -14,13 +14,7 @@ import net.minecraft.world.World;
 public class ItemRock extends Item {
 
     public ItemRock(Settings settings) {
-        super(settings);
-    }
-
-    public final int maxDamage = 32;
-
-    public Item.Settings maxDamage(int maxDamage) {
-        return new Item.Settings().maxDamage(maxDamage);
+        super(settings.maxDamage(32));
     }
 
     @Override
