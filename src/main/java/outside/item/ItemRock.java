@@ -59,7 +59,7 @@ public class ItemRock extends Item {
         for (int i = 0; i < 3; i++) {
             sum += rand.nextInt(3);
         }
-        int result = sum + rand.nextInt(damage == 0 ? 1 : damage);
+        int result = sum + rand.nextInt(damage < 2 ? 1 : damage / 2);
         return result;
     }
 

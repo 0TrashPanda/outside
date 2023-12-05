@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "outside:block/example_block"
+		}
+	}
+}
