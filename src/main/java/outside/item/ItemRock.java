@@ -12,9 +12,13 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.Items;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import java.util.Random;
@@ -38,21 +42,49 @@ public class ItemRock extends Item {
         this.attributeModifiers = builder.build();
     }
 
-    @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        World world = context.getWorld();
-        BlockPos blockPos = context.getBlockPos();
-        BlockState blockState = world.getBlockState(blockPos);
-        if (blockState.getBlock() == Blocks.STONE) {
-            ItemStack itemStack = context.getStack();
-            PlayerEntity playerEntity = context.getPlayer();
-            playerEntity.playSound(SoundEvents.BLOCK_TUFF_BREAK, 1.0F, 1.0F);
-            int damage = getRockDamage(itemStack.getDamage());
-            itemStack.damage(damage, playerEntity, p -> p.sendToolBreakStatus(context.getHand()));
-            return ActionResult.SUCCESS;
-        }
-        return ActionResult.PASS;
-    }
+    // @Override
+    // public ActionResult useOnBlock(ItemUsageContext context) {
+    //     World world = context.getWorld();
+    //     BlockPos blockPos = context.getBlockPos();
+    //     BlockState blockState = world.getBlockState(blockPos);
+    //     if (blockState.getBlock() == Blocks.STONE) {
+    //         ItemStack itemStack = context.getStack();
+    //         PlayerEntity playerEntity = context.getPlayer();
+	// 		ItemStack offHandStack = playerEntity.getOffHandStack();
+	// 		ItemStack mainHandItem = playerEntity.getItemsHand().iterator().next();
+	// 		if (mainHandItem.getItem() != Items.FLINT) {
+	// 			System.out.println("Not flint" + mainHandItem.getItem());
+	// 			return ActionResult.PASS;
+	// 		}
+    //         playerEntity.playSound(SoundEvents.BLOCK_TUFF_BREAK, 1.0F, 1.0F);
+    //         int damage = getRockDamage(itemStack.getDamage());
+    //         itemStack.damage(damage, playerEntity, p -> p.sendToolBreakStatus(context.getHand()));
+	// 		ItemStack itemStack3 = ItemUsage.exchangeStack(offHandStack, playerEntity, itemStack);
+	// 		// playerEntity.setOffhandStack(itemStack3);
+	// 		playerEntity.setStackInHand(context.getHand(), itemStack3);
+    //         return ActionResult.SUCCESS;
+    //     }
+    //     return ActionResult.PASS;
+    // }
+
+	@Override
+	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+		ItemStack mainHandStack = user.getEquippedStack(EquipmentSlot.MAINHAND);
+		ItemStack offHandStack = user.getEquippedStack(EquipmentSlot.OFFHAND);
+		if (mainHandStack.getItem() != Items.FLINT) {
+			System.out.println("Not flint" + mainHandStack.getItem());
+			return TypedActionResult.pass(offHandStack);
+		}
+		System.out.println("got past flint check " + mainHandStack.getItem());
+		user.playSound(SoundEvents.BLOCK_TUFF_BREAK, 1.0F, 1.0F);
+		int damage = getRockDamage(offHandStack.getDamage());
+		offHandStack.damage(damage, user, p -> p.sendToolBreakStatus(hand));
+		ItemStack itemStack3 = ItemUsage.exchangeStack(mainHandStack, user, offHandStack);
+		user.setStackInHand(hand, itemStack3);
+		return TypedActionResult.success(offHandStack, world.isClient());
+	}
+
+
 
     private int getRockDamage(int damage) {
         int sum = 0;
