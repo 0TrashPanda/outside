@@ -1,4 +1,5 @@
 {
   "item.outside.rock" : "Rock",
-  "block.outside.example_block": "Example Block"
+  "block.outside.example_block": "Example Block",
+  "item.outside.sharpend_flint": "Sharpend Flint"
 }

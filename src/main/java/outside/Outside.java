@@ -22,13 +22,5 @@ public class Outside implements ModInitializer {
 
 		new OutsideBlocks();
 		OutsideBlocks.init(mod);
-
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
-			entries.addItem(OutsideBlocks.EXAMPLE_BLOCK.asItem());
-		});
-
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
-			entries.addItem(OutsideItems.ROCK);
-		});
 	}
 }
