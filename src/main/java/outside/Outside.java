@@ -2,14 +2,9 @@ package outside;
 
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
-import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroups;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 import outside.registries.OutsideItems;
 import outside.registries.OutsideBlocks;
 
@@ -23,14 +18,10 @@ public class Outside implements ModInitializer {
 	public void onInitialize(ModContainer mod) {
 		// LOGGER.info("Hello Quilt world from {}!", mod.metadata().name());
 		new OutsideItems();
-		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "rock"),
-				OutsideItems.ROCK);
+		OutsideItems.init(mod);
 
-		Registry.register(Registries.BLOCK, new Identifier(mod.metadata().id(), "example_block"),
-				OutsideBlocks.EXAMPLE_BLOCK);
-
-		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "example_block"),
-				new BlockItem(OutsideBlocks.EXAMPLE_BLOCK, new QuiltItemSettings()));
+		new OutsideBlocks();
+		OutsideBlocks.init(mod);
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
 			entries.addItem(OutsideBlocks.EXAMPLE_BLOCK.asItem());
