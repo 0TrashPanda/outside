@@ -10,15 +10,16 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import outside.item.ItemRock;
+import outside.item.ItemSharpened_flint;
+import outside.item.ItemHammerstone;
 
 public class OutsideItems implements ModInitializer {
 
     public OutsideItems() {
     }
 
-	public static final ItemRock ROCK = new ItemRock(new QuiltItemSettings());
-	public static final ItemRock SHARPEND_FLINT = new ItemRock(new QuiltItemSettings());
+	public static final ItemHammerstone ROCK = new ItemHammerstone(new QuiltItemSettings(), 64);
+	public static final ItemSharpened_flint SHARPEND_FLINT = new ItemSharpened_flint(new QuiltItemSettings());
 
 	public static void init(ModContainer mod) {
 		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "rock"),

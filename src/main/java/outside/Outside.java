@@ -3,8 +3,6 @@ package outside;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.ItemGroups;
 import outside.registries.OutsideItems;
 import outside.registries.OutsideBlocks;
 
