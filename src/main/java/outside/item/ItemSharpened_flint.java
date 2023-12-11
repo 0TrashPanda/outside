@@ -10,13 +10,14 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 import java.util.Random;
-
 import outside.Modifiers;
 
 public class ItemSharpened_flint extends Item {
@@ -38,18 +39,21 @@ public class ItemSharpened_flint extends Item {
     }
 
 	@Override
-	   public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if (world.isClient) {
 			return TypedActionResult.pass(user.getStackInHand(hand));
 		}
 		ItemStack itemStack = user.getStackInHand(hand);
 		if (user.isSneaking()) {
-			Modifiers modefiers = Modifiers.values()[rand.nextInt(Modifiers.values().length)];
-			itemStack.getOrCreateNbt().putLong("modifier", modefiers.ordinal());
-        	user.sendMessage(Text.of(String.format("Stored modifier: %s", modefiers.name)), true);
+			Modifiers modefier = Modifiers.values()[rand.nextInt(Modifiers.values().length)];
+			itemStack.getOrCreateNbt().putInt("modifier", modefier.ordinal());
+			itemStack.setCustomName(Text.of(modefier.name + " " + this.getName().getString()));
+			Style color = Style.EMPTY.withColor(TextColor.fromRgb(modefier.hexColor));
+			Text text = Text.of(modefier.name).setStyle(color).get(0);
+			user.sendMessage(text, true);
 		} else {
-			long x = itemStack.getOrCreateNbt().getLong("modifier");
-			user.sendMessage(Text.of(String.format("Loaded modifier: %s", Modifiers.values()[(int) x].name)), true);
+			int modifier = itemStack.getOrCreateNbt().getInt("modifier");
+			user.sendMessage(Text.of(String.format("Loaded modifier: %s", Modifiers.values()[modifier].name)), true);
 		}
 		return TypedActionResult.success(user.getStackInHand(hand));
 		}
