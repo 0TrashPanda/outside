@@ -2,7 +2,9 @@ package outside;
 
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
+import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
 
+import net.minecraft.client.render.RenderLayer;
 import outside.registries.OutsideItems;
 import outside.registries.OutsideBlocks;
 
@@ -20,5 +22,8 @@ public class Outside implements ModInitializer {
 
 		new OutsideBlocks();
 		OutsideBlocks.init(mod);
+
+		// BlockRenderLayerMap.put(RenderLayer.getCutout(), OutsideBlocks.FLAX);
+
 	}
 }

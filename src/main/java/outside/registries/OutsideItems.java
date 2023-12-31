@@ -10,7 +10,8 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import outside.item.ItemSharpened_flint;
+import outside.item.ItemSharpenedFlint;
+import outside.item.ItemFlintSpear;
 import outside.item.ItemHammerstone;
 
 public class OutsideItems implements ModInitializer {
@@ -19,25 +20,28 @@ public class OutsideItems implements ModInitializer {
     }
 
 	public static final ItemHammerstone ROCK = new ItemHammerstone(new QuiltItemSettings(), 64);
-	public static final ItemSharpened_flint SHARPEND_FLINT = new ItemSharpened_flint(new QuiltItemSettings());
+	public static final ItemSharpenedFlint SHARPEND_FLINT = new ItemSharpenedFlint(new QuiltItemSettings());
+	public static final ItemFlintSpear FLINT_SPEAR = new ItemFlintSpear(new QuiltItemSettings());
 
 	public static void init(ModContainer mod) {
 		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "rock"),
-				OutsideItems.ROCK);
-
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
-			entries.addItem(OutsideItems.ROCK);
-		});
+				ROCK);
 
 		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "sharpend_flint"),
-				OutsideItems.SHARPEND_FLINT);
+				SHARPEND_FLINT);
+
+
+		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "flax"),
+				new BlockItem(OutsideBlocks.FLAX, new QuiltItemSettings()));
+
+		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "flint_spear"),
+				FLINT_SPEAR);
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
-					entries.addItem(OutsideItems.SHARPEND_FLINT);
+				entries.addItem(ROCK);
+				entries.addItem(SHARPEND_FLINT);
+				entries.addItem(FLINT_SPEAR);
 		});
-
-		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "example_block"),
-				new BlockItem(OutsideBlocks.EXAMPLE_BLOCK, new QuiltItemSettings()));
 	}
 
 	@Override
