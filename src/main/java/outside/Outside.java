@@ -23,7 +23,7 @@ public class Outside implements ModInitializer {
 		new OutsideBlocks();
 		OutsideBlocks.init(mod);
 
-		// BlockRenderLayerMap.put(RenderLayer.getCutout(), OutsideBlocks.FLAX);
+		BlockRenderLayerMap.put(RenderLayer.getCutout(), OutsideBlocks.FLAX);
 
 	}
 }

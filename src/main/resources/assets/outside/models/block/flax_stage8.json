@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/crop",
   "textures": {
-    "crop": "outside:block/flax_stage0"
+    "crop": "outside:block/flax_stage8"
   }
 }
