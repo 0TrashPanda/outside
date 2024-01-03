@@ -23,6 +23,7 @@ public class OutsideItems implements ModInitializer {
 	public static final ItemHammerstone ROCK = new ItemHammerstone(new QuiltItemSettings(), 64);
 	public static final ItemSharpenedFlint SHARPEND_FLINT = new ItemSharpenedFlint(new QuiltItemSettings());
 	public static final ItemFlintSpear FLINT_SPEAR = new ItemFlintSpear(new QuiltItemSettings());
+	public static final Item FLAX = new AliasedBlockItem(OutsideBlocks.FLAX, new Item.Settings());
 	public static final Item FLAX_SEED = new AliasedBlockItem(OutsideBlocks.FLAX, new Item.Settings());
 
 	public static void init(ModContainer mod) {
@@ -30,6 +31,7 @@ public class OutsideItems implements ModInitializer {
 		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "sharpend_flint"), SHARPEND_FLINT);
 		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "flint_spear"), FLINT_SPEAR);
 		// Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "flax"), new BlockItem(OutsideBlocks.FLAX, new QuiltItemSettings()));
+		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "flax"), FLAX);
 		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "flax_seeds"), FLAX_SEED);
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
@@ -37,6 +39,7 @@ public class OutsideItems implements ModInitializer {
 				entries.addItem(SHARPEND_FLINT);
 				entries.addItem(FLINT_SPEAR);
 				// entries.addItem(OutsideBlocks.FLAX);
+				entries.addItem(FLAX);
 				entries.addItem(FLAX_SEED);
 		});
 	}
