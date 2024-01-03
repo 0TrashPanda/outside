@@ -8,8 +8,8 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.BlockView;
+import outside.registries.OutsideItems;
 import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
@@ -36,7 +36,7 @@ public class BlockFlax extends CropBlock {
 	}
 
 	public ItemConvertible getSeedsItem() {
-		return Items.WHEAT_SEEDS;
+		return OutsideItems.FLAX_SEED;
 	}
 
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

@@ -2,5 +2,7 @@
   "item.outside.rock" : "Rock",
   "block.outside.example_block": "Example Block",
   "item.outside.sharpend_flint": "Sharpend Flint",
-  "item.outside.flint_spear": "Flint Spear"
+  "item.outside.flint_spear": "Flint Spear",
+  "item.outside.flax": "Flax",
+  "item.outside.flax_seeds": "Flax Seeds"
 }
