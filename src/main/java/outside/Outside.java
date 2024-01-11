@@ -7,6 +7,8 @@ import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
 import net.minecraft.client.render.RenderLayer;
 import outside.registries.OutsideItems;
 import outside.registries.OutsideBlocks;
+import outside.registries.OutsideBlockEntityType;
+
 
 public class Outside implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -22,6 +24,8 @@ public class Outside implements ModInitializer {
 
 		new OutsideBlocks();
 		OutsideBlocks.init(mod);
+
+		new OutsideBlockEntityType();
 
 		BlockRenderLayerMap.put(RenderLayer.getCutout(), OutsideBlocks.FLAX);
 

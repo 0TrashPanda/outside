@@ -79,7 +79,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "outside:flax",
+              "name": "outside:dirty_flax",
               "functions": [
                 {
                   "function": "minecraft:set_count",

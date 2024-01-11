@@ -4,5 +4,10 @@
   "item.outside.sharpend_flint": "Sharpend Flint",
   "item.outside.flint_spear": "Flint Spear",
   "item.outside.flax": "Flax",
-  "item.outside.flax_seeds": "Flax Seeds"
+  "item.outside.flax_seeds": "Flax Seeds",
+  "item.outside.retted_flax": "Retted Flax",
+  "item.outside.dirty_flax": "Dirty Flax",
+  "block.outside.retting_barrel": "Retting Barrel"
+
+
 }
